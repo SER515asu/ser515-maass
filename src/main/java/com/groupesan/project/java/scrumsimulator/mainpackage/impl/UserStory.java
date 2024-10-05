@@ -17,6 +17,8 @@ public class UserStory extends ScrumObject {
 
     private double pointValue;
 
+    private String sprintValue;
+
     private UserStoryState state;
 
     private Player owner;
@@ -29,10 +31,11 @@ public class UserStory extends ScrumObject {
      * @param name the name for the user story
      * @param pointValue the point value for the story as a way of estimating required effort.
      */
-    public UserStory(String name, double pointValue) {
+    public UserStory(String name, double pointValue, String sprintValue) {
         this.name = name;
         this.description = "";
         this.pointValue = pointValue;
+        this.sprintValue = sprintValue;
         this.state = new UserStoryUnselectedState(this);
     }
 
@@ -44,10 +47,11 @@ public class UserStory extends ScrumObject {
      *     requirements.
      * @param pointValue the point value for the story as a way of estimating required effort.
      */
-    public UserStory(String name, String description, double pointValue) {
+    public UserStory(String name, String description, double pointValue, String sprintValue) {
         this.name = name;
         this.description = description;
         this.pointValue = pointValue;
+        this.sprintValue = sprintValue;
         this.state = new UserStoryUnselectedState(this);
     }
 
@@ -113,7 +117,9 @@ public class UserStory extends ScrumObject {
     public double getPointValue() {
         return pointValue;
     }
-
+    public String getSprintValue() {
+        return sprintValue;
+    }
     /**
      * Set the point value of the User Story to the specified value
      *
@@ -122,7 +128,9 @@ public class UserStory extends ScrumObject {
     public void setPointValue(double pointValue) {
         this.pointValue = pointValue;
     }
-
+    public void setSprintValue(String sprintValue) {
+        this.sprintValue = sprintValue;
+    }
     /**
      * [NOT IMPLEMENTED] return all child scrum objects of this object. Usually this would be tasks.
      *
@@ -183,4 +191,6 @@ public class UserStory extends ScrumObject {
     public Player getOwner() {
         return this.owner;
     }
+
+
 }
