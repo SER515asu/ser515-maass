@@ -109,12 +109,27 @@ public class EditUserStoryForm extends JFrame implements BaseComponent {
                     }
                 });
 
+        JButton deleteStoryButton = new JButton("Delete Story");
+
+        deleteStoryButton.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        //Add delete action
+                        dispose();
+                    }
+                });
+
         myJpanel.add(
                 cancelButton,
                 new CustomConstraints(0, 3, GridBagConstraints.EAST, GridBagConstraints.NONE));
         myJpanel.add(
                 submitButton,
                 new CustomConstraints(1, 3, GridBagConstraints.WEST, GridBagConstraints.NONE));
+
+        myJpanel.add(
+                deleteStoryButton,
+                new CustomConstraints(1, 3, GridBagConstraints.EAST, GridBagConstraints.NONE));
 
         add(myJpanel);
     }
