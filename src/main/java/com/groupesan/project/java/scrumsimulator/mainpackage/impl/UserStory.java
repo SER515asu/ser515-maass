@@ -55,13 +55,6 @@ public class UserStory extends ScrumObject {
         this.state = new UserStoryUnselectedState(this);
     }
 
-    public UserStory(String name, String description, double pointValue) {
-        this.name = name;
-        this.description = description;
-        this.pointValue = pointValue;
-        this.state = new UserStoryUnselectedState(this);
-    }
-
 
     protected void register() {
         this.id = new UserStoryIdentifier(ScrumIdentifierStoreSingleton.get().getNextId());
