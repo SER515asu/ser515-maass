@@ -13,18 +13,19 @@ import javax.swing.JPanel;
 
 public class UserStoryWidget extends JPanel implements BaseComponent {
 
-    JLabel id;
-    JLabel points;
-    JLabel name;
-    JLabel desc;
+    private JLabel idLabel;
+    private JLabel pointsLabel;
+    private JLabel nameLabel;
+    private JLabel descLabel;
+    private JLabel businessValueLabel;  // Updated to Business Value label
 
-    // TODO: This is a non transient field and this class is supposed to be serializable. this needs
-    // to be dealt with before this object can be serialized
+    // UserStory is non-transient; for serialization, additional handling may be required.
     private UserStory userStory;
 
-    ActionListener actionListener = e -> {};
-
-    MouseAdapter openEditDialog =
+    // Event listeners
+    private ActionListener actionListener = e -> {};
+    
+    private MouseAdapter openEditDialog = 
             new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -34,7 +35,7 @@ public class UserStoryWidget extends JPanel implements BaseComponent {
                     form.addWindowListener(
                             new java.awt.event.WindowAdapter() {
                                 public void windowClosed(java.awt.event.WindowEvent windowEvent) {
-                                    init();
+                                    init();  // Refresh UI when form is closed
                                 }
                             });
                 }
@@ -42,41 +43,53 @@ public class UserStoryWidget extends JPanel implements BaseComponent {
 
     public UserStoryWidget(UserStory userStory) {
         this.userStory = userStory;
-
         this.init();
     }
 
     public void init() {
+        // Clear previous components
         removeAll();
 
-        id = new JLabel(userStory.getId().toString());
-        id.addMouseListener(openEditDialog);
-        points = new JLabel(Double.toString(userStory.getPointValue()));
-        points.addMouseListener(openEditDialog);
-        name = new JLabel(userStory.getName());
-        name.addMouseListener(openEditDialog);
-        desc = new JLabel(userStory.getDescription());
-        desc.addMouseListener(openEditDialog);
+        // Initialize labels and set text based on UserStory attributes
+        idLabel = new JLabel(userStory.getId().toString());
+        idLabel.addMouseListener(openEditDialog);
 
+        pointsLabel = new JLabel(Double.toString(userStory.getPointValue()));
+        pointsLabel.addMouseListener(openEditDialog);
+
+        nameLabel = new JLabel(userStory.getName());
+        nameLabel.addMouseListener(openEditDialog);
+
+        descLabel = new JLabel(userStory.getDescription());
+        descLabel.addMouseListener(openEditDialog);
+
+        businessValueLabel = new JLabel("Business Value: " + userStory.getBusinessValue());  
+        businessValueLabel.addMouseListener(openEditDialog);
+
+        
         GridBagLayout myGridBagLayout = new GridBagLayout();
-
         setLayout(myGridBagLayout);
 
+       
         add(
-                id,
-                new CustomConstraints(
-                        0, 0, GridBagConstraints.WEST, 0.1, 0.0, GridBagConstraints.HORIZONTAL));
+            idLabel,
+            new CustomConstraints(
+                    0, 0, GridBagConstraints.WEST, 0.1, 0.0, GridBagConstraints.HORIZONTAL));
         add(
-                points,
-                new CustomConstraints(
-                        1, 0, GridBagConstraints.WEST, 0.1, 0.0, GridBagConstraints.HORIZONTAL));
+            pointsLabel,
+            new CustomConstraints(
+                    1, 0, GridBagConstraints.WEST, 0.1, 0.0, GridBagConstraints.HORIZONTAL));
         add(
-                name,
-                new CustomConstraints(
-                        2, 0, GridBagConstraints.WEST, 0.2, 0.0, GridBagConstraints.HORIZONTAL));
+            nameLabel,
+            new CustomConstraints(
+                    2, 0, GridBagConstraints.WEST, 0.2, 0.0, GridBagConstraints.HORIZONTAL));
         add(
-                desc,
-                new CustomConstraints(
-                        3, 0, GridBagConstraints.WEST, 0.7, 0.0, GridBagConstraints.HORIZONTAL));
+            descLabel,
+            new CustomConstraints(
+                    3, 0, GridBagConstraints.WEST, 0.5, 0.0, GridBagConstraints.HORIZONTAL));
+        add(
+            businessValueLabel,  
+            new CustomConstraints(
+                    4, 0, GridBagConstraints.WEST, 0.2, 0.0, GridBagConstraints.HORIZONTAL));
     }
 }

@@ -18,6 +18,7 @@ public class UserStory extends ScrumObject {
     private double pointValue;
 
     private String sprintValue;
+    private int businessValue;  
 
     private UserStoryState state;
 
@@ -35,8 +36,9 @@ public class UserStory extends ScrumObject {
         this.name = name;
         this.description = "";
         this.pointValue = pointValue;
-        //this.sprintValue = sprintValue;
+        this.sprintValue = sprintValue;
         this.state = new UserStoryUnselectedState(this);
+        this.businessValue = 5; //Business value set to mid point
     }
 
     /**
@@ -46,20 +48,17 @@ public class UserStory extends ScrumObject {
      * @param description the description for the user story for better understanding of the
      *     requirements.
      * @param pointValue the point value for the story as a way of estimating required effort.
+     * @param businessValue the Business Value for the user story (1-10 scale)
      */
-    public UserStory(String name, String description, double pointValue, String sprintValue) {
+    
+   
+         public UserStory(String name, String description, double pointValue,String sprintValue, int businessValue) {
         this.name = name;
         this.description = description;
         this.pointValue = pointValue;
+        this.state = new UserStoryUnselectedState(this);
+        this.businessValue = businessValue;
         this.sprintValue = sprintValue;
-        this.state = new UserStoryUnselectedState(this);
-    }
-
-    public UserStory(String name, String description, double pointValue) {
-        this.name = name;
-        this.description = description;
-        this.pointValue = pointValue;
-        this.state = new UserStoryUnselectedState(this);
     }
 
 
@@ -141,6 +140,27 @@ public class UserStory extends ScrumObject {
         this.sprintValue = sprintValue;
     }
     /**
+     * Get the Business Value of this UserStory
+     *
+     * @return the Business Value of this UserStory as an integer (scale 1-10)
+     */
+    public int getBusinessValue() {
+        return businessValue;
+    }
+
+    /**
+     * Setting the Business Value of the US to the defined value
+     *
+     * @param businessValue the business value (integer scale from 1 to 10)
+     */
+    public void setBusinessValue(int businessValue) {
+        if (businessValue < 1 || businessValue > 10) {
+            throw new IllegalArgumentException("Business Value must be between 1 and 10.");
+        }
+        this.businessValue = businessValue;
+    }
+
+    /**
      * [NOT IMPLEMENTED] return all child scrum objects of this object. Usually this would be tasks.
      *
      * @return a List containing all child ScrumObjects of this UserStory
@@ -157,9 +177,9 @@ public class UserStory extends ScrumObject {
     @Override
     public String toString() {
         if (isRegistered()) {
-            return this.getId().toString() + " - " + name;
+            return this.getId().toString() + " - " + name + " [Business Value: " + businessValue + "]";
         }
-        return "(unregistered) - " + getName();
+        return "(unregistered) - " + getName() + " [Business Value: " + businessValue + "]";
     }
 
     // State Management, need Player class to implement final selection logic
