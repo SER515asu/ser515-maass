@@ -26,8 +26,25 @@ public class UserStoryStore {
         userStories = new ArrayList<>();
     }
 
+    // Add a setter for the list
+    public void setUserStories(List<UserStory> userStories) {
+        this.userStories = userStories;
+    }
+
     public void addUserStory(UserStory userStory) {
         userStories.add(userStory);
+    }
+
+    public void removeUserStory(String storyName){
+        List<UserStory> userStories = userStoryStore.getUserStories();
+        UserStory storyToDelete = userStories.stream()
+                .filter(story -> story.getName().equals(storyName))
+                .findFirst()
+                .orElse(null);
+        if (storyToDelete != null) {
+            userStories.remove(storyToDelete);
+            userStoryStore.setUserStories(userStories);
+        }
     }
 
     public List<UserStory> getUserStories() {
