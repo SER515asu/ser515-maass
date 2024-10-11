@@ -42,7 +42,7 @@ public class UserStoryTest {
     public void testUserStoryUnregistered2() {
         String string = myUserStory.toString();
 
-        assertEquals("(unregistered) - predefinedUS1", string);
+        assertEquals("(unregistered) - predefinedUS1 [Business Value: 2]", string);
     }
 
     @Test

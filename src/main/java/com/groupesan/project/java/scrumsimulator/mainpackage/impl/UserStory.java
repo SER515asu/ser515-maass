@@ -32,7 +32,7 @@ public class UserStory extends ScrumObject {
      * @param name the name for the user story
      * @param pointValue the point value for the story as a way of estimating required effort.
      */
-    public UserStory(String name, double pointValue) {
+    public UserStory(String name, double pointValue,String sprintValue) {
         this.name = name;
         this.description = "";
         this.pointValue = pointValue;

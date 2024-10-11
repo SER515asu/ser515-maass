@@ -45,7 +45,6 @@ public class UserTest {
     @Test
     public void testUserUnregistered2() {
         String string = myUser.toString();
-
         assertEquals("bob " + dev.toString() + " (unregistered)", string);
     }
 
@@ -54,7 +53,6 @@ public class UserTest {
         myUser.doRegister();
 
         ScrumIdentifier id = myUser.getId();
-
         assertNotNull(id);
     }
 }
