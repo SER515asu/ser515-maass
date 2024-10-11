@@ -1,13 +1,11 @@
 package com.groupesan.project.java.scrumsimulator.mainpackage.ui.panels;
 
-import com.groupesan.project.java.scrumsimulator.mainpackage.state.SimulationManager;
-import com.groupesan.project.java.scrumsimulator.mainpackage.ui.widgets.BaseComponent;
-import com.groupesan.project.java.scrumsimulator.mainpackage.utils.CustomConstraints;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.UUID;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,6 +14,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import com.groupesan.project.java.scrumsimulator.mainpackage.state.SimulationManager;
+import com.groupesan.project.java.scrumsimulator.mainpackage.ui.widgets.BaseComponent;
+import com.groupesan.project.java.scrumsimulator.mainpackage.utils.CustomConstraints;
 
 /**
  * ModifySimulationPane is a UI component used by teachers to create or modify simulations. It
@@ -53,7 +55,7 @@ public class ModifySimulationPane extends JFrame implements BaseComponent {
 
         JLabel nameLabel = new JLabel("Simulation Name:");
         JLabel sprintsLabel = new JLabel("Number of Sprints:");
-        JLabel sprintDurationLabel = new JLabel("Sprint Duration:");
+        JLabel sprintDurationLabel = new JLabel("Sprint Duration(Days):");
 
         panel.add(
                 nameLabel,
