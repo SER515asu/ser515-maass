@@ -13,11 +13,11 @@ import javax.swing.JPanel;
 
 public class UserStoryWidget extends JPanel implements BaseComponent {
 
-    private JLabel idLabel;
-    private JLabel pointsLabel;
-    private JLabel nameLabel;
-    private JLabel descLabel;
-    private JLabel businessValueLabel;  // Updated to Business Value label
+    JLabel id;
+    JLabel points;
+    JLabel name;
+    JLabel desc;
+    JLabel businessValue;  
 
     // UserStory is non-transient; for serialization, additional handling may be required.
     private UserStory userStory;
@@ -51,20 +51,20 @@ public class UserStoryWidget extends JPanel implements BaseComponent {
         removeAll();
 
         // Initialize labels and set text based on UserStory attributes
-        idLabel = new JLabel(userStory.getId().toString());
-        idLabel.addMouseListener(openEditDialog);
+        id = new JLabel(userStory.getId().toString());
+        id.addMouseListener(openEditDialog);
 
-        pointsLabel = new JLabel(Double.toString(userStory.getPointValue()));
-        pointsLabel.addMouseListener(openEditDialog);
+        points = new JLabel(Double.toString(userStory.getPointValue()));
+        points.addMouseListener(openEditDialog);
 
-        nameLabel = new JLabel(userStory.getName());
-        nameLabel.addMouseListener(openEditDialog);
+        name = new JLabel(userStory.getName());
+        name.addMouseListener(openEditDialog);
 
-        descLabel = new JLabel(userStory.getDescription());
-        descLabel.addMouseListener(openEditDialog);
+        desc = new JLabel(userStory.getDescription());
+        desc.addMouseListener(openEditDialog);
 
-        businessValueLabel = new JLabel("Business Value: " + userStory.getBusinessValue());  
-        businessValueLabel.addMouseListener(openEditDialog);
+        businessValue = new JLabel("Business Value: " + userStory.getBusinessValue());  
+        businessValue.addMouseListener(openEditDialog);
 
         
         GridBagLayout myGridBagLayout = new GridBagLayout();
@@ -72,23 +72,23 @@ public class UserStoryWidget extends JPanel implements BaseComponent {
 
        
         add(
-            idLabel,
+            id,
             new CustomConstraints(
                     0, 0, GridBagConstraints.WEST, 0.1, 0.0, GridBagConstraints.HORIZONTAL));
         add(
-            pointsLabel,
+            points,
             new CustomConstraints(
                     1, 0, GridBagConstraints.WEST, 0.1, 0.0, GridBagConstraints.HORIZONTAL));
         add(
-            nameLabel,
+            name,
             new CustomConstraints(
                     2, 0, GridBagConstraints.WEST, 0.2, 0.0, GridBagConstraints.HORIZONTAL));
         add(
-            descLabel,
+            desc,
             new CustomConstraints(
                     3, 0, GridBagConstraints.WEST, 0.5, 0.0, GridBagConstraints.HORIZONTAL));
         add(
-            businessValueLabel,  
+            businessValue,  
             new CustomConstraints(
                     4, 0, GridBagConstraints.WEST, 0.2, 0.0, GridBagConstraints.HORIZONTAL));
     }
