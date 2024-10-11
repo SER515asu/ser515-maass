@@ -125,6 +125,8 @@ public class EditUserStoryForm extends JFrame implements BaseComponent {
                     public void actionPerformed(ActionEvent e) {
                         String name = nameField.getText();
                         UserStoryStore.getInstance().removeUserStory(name);
+                        UserStoryListPane form = new UserStoryListPane();
+                        form.setVisible(true);
                         dispose();
                     }
                 });
