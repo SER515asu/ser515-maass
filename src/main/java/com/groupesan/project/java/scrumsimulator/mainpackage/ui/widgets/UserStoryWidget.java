@@ -24,9 +24,6 @@ public class UserStoryWidget extends JPanel implements BaseComponent {
     // UserStory is non-transient; for serialization, additional handling may be required.
    private UserStory userStory;
 
-    // Event listeners
-    private ActionListener actionListener = e -> {};
-    
     private MouseAdapter openEditDialog = 
             new MouseAdapter() {
                 @Override
