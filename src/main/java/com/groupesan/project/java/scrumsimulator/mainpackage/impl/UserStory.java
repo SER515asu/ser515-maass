@@ -38,7 +38,7 @@ public class UserStory extends ScrumObject {
         this.pointValue = pointValue;
         this.sprintValue = sprintValue;
         this.state = new UserStoryUnselectedState(this);
-        this.businessValue = 5; //Business value set to mid point
+        this.businessValue = 5;
     }
 
     /**

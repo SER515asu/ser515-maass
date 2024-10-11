@@ -15,6 +15,7 @@ public class EditUserStoryForm extends JFrame implements BaseComponent {
 
     Double[] pointsList = {1.0, 2.0, 3.0, 5.0, 8.0, 11.0, 19.0, 30.0, 49.0};
     String[] spritsList = {"Sprint1","Sprint2","Sprint3"};
+    Integer[] businessValueList = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};  
 
     public EditUserStoryForm(UserStory userStory) {
         this.userStory = userStory;
@@ -27,7 +28,7 @@ public class EditUserStoryForm extends JFrame implements BaseComponent {
     private JTextArea descArea = new JTextArea();
     private JComboBox<Double> pointsCombo = new JComboBox<>(pointsList);
     private JComboBox<String> sprintsCombo = new JComboBox<>(spritsList);
-
+    private JComboBox<Integer> businessValueCombo = new JComboBox<>(businessValueList); 
     public void init() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Edit User Story " + userStory.getId().toString());
@@ -39,7 +40,8 @@ public class EditUserStoryForm extends JFrame implements BaseComponent {
         pointsCombo.setSelectedItem(userStory.getPointValue());
         sprintsCombo = new JComboBox<>(spritsList);
         sprintsCombo.setSelectedItem(userStory.getSprintValue());
-
+        businessValueCombo.setSelectedItem(userStory.getBusinessValue());
+      
         GridBagLayout myGridbagLayout = new GridBagLayout();
         JPanel myJpanel = new JPanel();
         myJpanel.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -89,8 +91,18 @@ public class EditUserStoryForm extends JFrame implements BaseComponent {
                 new CustomConstraints(
                         1, 3, GridBagConstraints.EAST, 1.0, 0.0, GridBagConstraints.HORIZONTAL));
 
+        
+        JLabel businessValueLabel = new JLabel("Business Value:");
+        myJpanel.add(
+                businessValueLabel,
+                new CustomConstraints(
+                        0, 3, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL));
+        myJpanel.add(
+                businessValueCombo,
+                new CustomConstraints(
+                        1, 3, GridBagConstraints.EAST, 1.0, 0.0, GridBagConstraints.HORIZONTAL));
+        
         JButton cancelButton = new JButton("Cancel");
-
         cancelButton.addActionListener(
                 new ActionListener() {
                     @Override
@@ -109,10 +121,13 @@ public class EditUserStoryForm extends JFrame implements BaseComponent {
                         String description = descArea.getText();
                         Double points = (Double) pointsCombo.getSelectedItem();
                         String sprint = (String) sprintsCombo.getSelectedItem();
+                        Integer businessValue = (Integer) businessValueCombo.getSelectedItem();
+                        
                         userStory.setName(name);
                         userStory.setDescription(description);
                         userStory.setPointValue(points);
                         userStory.setSprintValue(sprint);
+                        userStory.setBusinessValue(businessValue);
                         dispose();
                     }
                 });

@@ -44,6 +44,7 @@ public class UserStoryListPane extends JFrame implements BaseComponent {
         headerPanel.add(new JLabel("Name"), new CustomConstraints(2, 0, GridBagConstraints.WEST, 0.2, 0.0, GridBagConstraints.HORIZONTAL));
         headerPanel.add(new JLabel("Description"), new CustomConstraints(3, 0, GridBagConstraints.WEST, 0.4, 0.0, GridBagConstraints.HORIZONTAL));
         headerPanel.add(new JLabel("SprintValue"), new CustomConstraints(4, 0, GridBagConstraints.WEST, 0.2, 0.0, GridBagConstraints.HORIZONTAL));
+        headerPanel.add(new JLabel("BusinessValue"), new CustomConstraints(5, 0, GridBagConstraints.WEST, 0.4, 0.0, GridBagConstraints.HORIZONTAL));
 
         JPanel subPanel = new JPanel();
         subPanel.add(headerPanel, new CustomConstraints(0, 0, GridBagConstraints.WEST, 1.0, 0.0, GridBagConstraints.HORIZONTAL));

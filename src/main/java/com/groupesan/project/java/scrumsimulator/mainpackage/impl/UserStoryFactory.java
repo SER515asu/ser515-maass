@@ -25,8 +25,7 @@ public class UserStoryFactory {
      * @return a new instance of UserStory
      */
     public UserStory createNewUserStory(String name, String description, double pointValue,String sprintValue, int businessValue) {
-        //make sure business value is within defined scale (1-10)
-        if (businessValue < 1 || businessValue > 10) {
+            if (businessValue < 1 || businessValue > 10) {
             throw new IllegalArgumentException("Business Value must be between 1 and 10.");
         }
 
