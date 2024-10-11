@@ -18,7 +18,7 @@ public class SimulationManager {
      * @param numberOfSprints The total sprint count.
      * @param sprintDuration The sprint duration.
      */
-    public void createSimulation(String simId, String simName, String numberOfSprints, String sprintDuration) {
-        SimulationStateManager.saveNewSimulationDetails(simId, simName, numberOfSprints, sprintDuration);
+    public void createSimulation(String simId, String simName, String numberOfSprints,String sprintDuration) {
+        SimulationStateManager.saveNewSimulationDetails(simId, simName, numberOfSprints,sprintDuration);
     }
 }
