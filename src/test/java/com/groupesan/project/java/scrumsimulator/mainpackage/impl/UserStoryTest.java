@@ -15,7 +15,11 @@ public class UserStoryTest {
     public void setup() {
         myUserStory =
                 UserStoryFactory.getInstance()
+
                         .createNewUserStory("predefinedUS1", "description1", 1.0, "Sprint1");
+
+                        //.createNewUserStory("predefinedUS1", "description1", 1.0, "Sprint 1", 2);
+
     }
 
     @Test

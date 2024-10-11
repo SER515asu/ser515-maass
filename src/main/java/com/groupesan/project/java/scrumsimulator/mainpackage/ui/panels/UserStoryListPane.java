@@ -11,10 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 public class UserStoryListPane extends JFrame implements BaseComponent {
@@ -27,7 +24,7 @@ public class UserStoryListPane extends JFrame implements BaseComponent {
     public void init() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("User Story list");
-        setSize(400, 300);
+        setSize(600, 400);
 
         GridBagLayout myGridbagLayout = new GridBagLayout();
         JPanel myJpanel = new JPanel();
@@ -41,15 +38,25 @@ public class UserStoryListPane extends JFrame implements BaseComponent {
         //                UserStoryFactory.getInstance().createNewUserStory("foo2", "bar2", 4);
         //        widgets.add(new UserStoryWidget(aUserStory));
         //        widgets.add(new UserStoryWidget(aUserStory2));
+        JPanel headerPanel = new JPanel(new GridBagLayout());
+        headerPanel.add(new JLabel("ID"), new CustomConstraints(0, 0, GridBagConstraints.WEST, 0.1, 0.0, GridBagConstraints.HORIZONTAL));
+        headerPanel.add(new JLabel("Points"), new CustomConstraints(1, 0, GridBagConstraints.WEST, 0.1, 0.0, GridBagConstraints.HORIZONTAL));
+        headerPanel.add(new JLabel("Name"), new CustomConstraints(2, 0, GridBagConstraints.WEST, 0.2, 0.0, GridBagConstraints.HORIZONTAL));
+        headerPanel.add(new JLabel("Description"), new CustomConstraints(3, 0, GridBagConstraints.WEST, 0.4, 0.0, GridBagConstraints.HORIZONTAL));
+        headerPanel.add(new JLabel("SprintValue"), new CustomConstraints(4, 0, GridBagConstraints.WEST, 0.2, 0.0, GridBagConstraints.HORIZONTAL));
+
+        JPanel subPanel = new JPanel();
+        subPanel.add(headerPanel, new CustomConstraints(0, 0, GridBagConstraints.WEST, 1.0, 0.0, GridBagConstraints.HORIZONTAL));
 
         for (UserStory userStory : UserStoryStore.getInstance().getUserStories()) {
             widgets.add(new UserStoryWidget(userStory));
         }
 
-        JPanel subPanel = new JPanel();
+//        JPanel subPanel = new JPanel();
         subPanel.setLayout(new GridBagLayout());
-        int i = 0;
+        int i = 1; //1 because of presence of header row
         for (UserStoryWidget widget : widgets) {
+
             subPanel.add(
                     widget,
                     new CustomConstraints(

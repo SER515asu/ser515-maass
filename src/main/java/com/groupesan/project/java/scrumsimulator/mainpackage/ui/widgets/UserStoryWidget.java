@@ -17,14 +17,14 @@ public class UserStoryWidget extends JPanel implements BaseComponent {
     JLabel points;
     JLabel name;
     JLabel desc;
+    JLabel SprintValue;
 
-    // TODO: This is a non transient field and this class is supposed to be serializable. this needs
-    // to be dealt with before this object can be serialized
-    private UserStory userStory;
+    JLabel businessValue;  // Updated to Business Value label
 
-    ActionListener actionListener = e -> {};
+    // UserStory is non-transient; for serialization, additional handling may be required.
+   private UserStory userStory;
 
-    MouseAdapter openEditDialog =
+    private MouseAdapter openEditDialog = 
             new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -34,7 +34,7 @@ public class UserStoryWidget extends JPanel implements BaseComponent {
                     form.addWindowListener(
                             new java.awt.event.WindowAdapter() {
                                 public void windowClosed(java.awt.event.WindowEvent windowEvent) {
-                                    init();
+                                    init();  // Refresh UI when form is closed
                                 }
                             });
                 }
@@ -42,11 +42,11 @@ public class UserStoryWidget extends JPanel implements BaseComponent {
 
     public UserStoryWidget(UserStory userStory) {
         this.userStory = userStory;
-
         this.init();
     }
 
     public void init() {
+        // Clear previous components
         removeAll();
 
         id = new JLabel(userStory.getId().toString());
@@ -57,26 +57,43 @@ public class UserStoryWidget extends JPanel implements BaseComponent {
         name.addMouseListener(openEditDialog);
         desc = new JLabel(userStory.getDescription());
         desc.addMouseListener(openEditDialog);
+        SprintValue = new JLabel(userStory.getSprintValue());
+        SprintValue.addMouseListener(openEditDialog);
 
+        businessValue = new JLabel("Business Value: " + userStory.getBusinessValue());  
+        businessValue.addMouseListener(openEditDialog);
+
+        
         GridBagLayout myGridBagLayout = new GridBagLayout();
-
         setLayout(myGridBagLayout);
 
+       
         add(
-                id,
-                new CustomConstraints(
-                        0, 0, GridBagConstraints.WEST, 0.1, 0.0, GridBagConstraints.HORIZONTAL));
+            id,
+            new CustomConstraints(
+                    0, 0, GridBagConstraints.WEST, 0.1, 0.0, GridBagConstraints.HORIZONTAL));
         add(
-                points,
-                new CustomConstraints(
-                        1, 0, GridBagConstraints.WEST, 0.1, 0.0, GridBagConstraints.HORIZONTAL));
+            points,
+            new CustomConstraints(
+                    1, 0, GridBagConstraints.WEST, 0.1, 0.0, GridBagConstraints.HORIZONTAL));
         add(
-                name,
-                new CustomConstraints(
-                        2, 0, GridBagConstraints.WEST, 0.2, 0.0, GridBagConstraints.HORIZONTAL));
+            name,
+            new CustomConstraints(
+                    2, 0, GridBagConstraints.WEST, 0.2, 0.0, GridBagConstraints.HORIZONTAL));
         add(
                 desc,
                 new CustomConstraints(
                         3, 0, GridBagConstraints.WEST, 0.7, 0.0, GridBagConstraints.HORIZONTAL));
+        add(
+                SprintValue,
+                new CustomConstraints(
+                        4, 0, GridBagConstraints.WEST, 0.7, 0.0, GridBagConstraints.HORIZONTAL
+                )
+        );
+
+        add(
+            businessValue,  
+            new CustomConstraints(
+                    4, 0, GridBagConstraints.WEST, 0.2, 0.0, GridBagConstraints.HORIZONTAL));
     }
 }

@@ -1,13 +1,11 @@
 package com.groupesan.project.java.scrumsimulator.mainpackage.ui.panels;
 
-import com.groupesan.project.java.scrumsimulator.mainpackage.state.SimulationManager;
-import com.groupesan.project.java.scrumsimulator.mainpackage.ui.widgets.BaseComponent;
-import com.groupesan.project.java.scrumsimulator.mainpackage.utils.CustomConstraints;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.UUID;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,15 +15,20 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import com.groupesan.project.java.scrumsimulator.mainpackage.state.SimulationManager;
+import com.groupesan.project.java.scrumsimulator.mainpackage.ui.widgets.BaseComponent;
+import com.groupesan.project.java.scrumsimulator.mainpackage.utils.CustomConstraints;
+
 /**
  * ModifySimulationPane is a UI component used by teachers to create or modify simulations. It
  * allows the generation of a new simulation ID and displays it on the UI.
  */
 public class ModifySimulationPane extends JFrame implements BaseComponent {
 
-    private SimulationManager simulationManager;
+    private final SimulationManager simulationManager;
     private JTextField simulationNameField;
     private JTextField numberOfSprintsField;
+    private JTextField sprintDurationField;
     private JTextArea simulationIdDisplay;
 
     public ModifySimulationPane(SimulationManager manager) {
@@ -35,7 +38,7 @@ public class ModifySimulationPane extends JFrame implements BaseComponent {
 
     /** Initializes the UI components of the ModifySimulationPane. */
     @Override
-    public void init() {
+    public final void init() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Create Simulation");
         setSize(400, 300);
@@ -48,9 +51,11 @@ public class ModifySimulationPane extends JFrame implements BaseComponent {
 
         simulationNameField = new JTextField(20);
         numberOfSprintsField = new JTextField(20);
+        sprintDurationField = new JTextField(20);
 
         JLabel nameLabel = new JLabel("Simulation Name:");
         JLabel sprintsLabel = new JLabel("Number of Sprints:");
+        JLabel sprintDurationLabel = new JLabel("Sprint Duration(Days):");
 
         panel.add(
                 nameLabel,
@@ -69,6 +74,15 @@ public class ModifySimulationPane extends JFrame implements BaseComponent {
                 numberOfSprintsField,
                 new CustomConstraints(
                         1, 1, GridBagConstraints.WEST, 1.0, 1.0, GridBagConstraints.HORIZONTAL));
+        
+        panel.add(
+                sprintDurationLabel,
+                new CustomConstraints(
+                        0, 2, GridBagConstraints.WEST, 1.0, 1.0, GridBagConstraints.HORIZONTAL));
+        panel.add(
+                sprintDurationField,
+                new CustomConstraints(
+                        1, 2, GridBagConstraints.WEST, 1.0, 1.0, GridBagConstraints.HORIZONTAL));
 
         JButton submitButton = new JButton("Create Simulation");
         submitButton.addActionListener(
@@ -78,7 +92,8 @@ public class ModifySimulationPane extends JFrame implements BaseComponent {
                         String simId = UUID.randomUUID().toString();
                         String simName = simulationNameField.getText();
                         String numberOfSprints = numberOfSprintsField.getText();
-                        simulationManager.createSimulation(simId, simName, numberOfSprints);
+                        String sprintDuration = sprintDurationField.getText();
+                        simulationManager.createSimulation(simId, simName, numberOfSprints,sprintDuration);
 
                         // Prepare a JTextField to display the Simulation ID
                         JTextField simIdField = new JTextField(simId);
@@ -98,17 +113,19 @@ public class ModifySimulationPane extends JFrame implements BaseComponent {
                         simulationNameField.setText("");
                         numberOfSprintsField.setText("");
                         simulationIdDisplay.setText("");
+                        sprintDurationField.setText("");
+                        simulationNameField.requestFocusInWindow();
                     }
                 });
 
         panel.add(
                 submitButton,
                 new CustomConstraints(
-                        0, 2, GridBagConstraints.WEST, 1.0, 1.0, GridBagConstraints.HORIZONTAL));
+                        0, 3, GridBagConstraints.WEST, 1.0, 1.0, GridBagConstraints.HORIZONTAL));
         panel.add(
                 simulationIdDisplay,
                 new CustomConstraints(
-                        1, 2, GridBagConstraints.WEST, 1.0, 1.0, GridBagConstraints.HORIZONTAL));
+                        2, 2, GridBagConstraints.WEST, 1.0, 1.0, GridBagConstraints.HORIZONTAL));
 
         add(panel);
     }
