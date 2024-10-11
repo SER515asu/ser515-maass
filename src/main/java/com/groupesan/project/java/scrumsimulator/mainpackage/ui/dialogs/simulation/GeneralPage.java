@@ -1,21 +1,31 @@
 package com.groupesan.project.java.scrumsimulator.mainpackage.ui.dialogs.simulation;
 
+import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
+
 import com.groupesan.project.java.scrumsimulator.mainpackage.ui.utils.DataModel;
 import com.groupesan.project.java.scrumsimulator.mainpackage.ui.utils.GridBagConstraintsBuilder;
 import com.groupesan.project.java.scrumsimulator.mainpackage.ui.widgets.ResuableHeader;
 import com.groupesan.project.java.scrumsimulator.mainpackage.ui.widgets.SpinnerInput;
 import com.groupesan.project.java.scrumsimulator.mainpackage.ui.widgets.TextInput;
 import com.groupesan.project.java.scrumsimulator.mainpackage.ui.widgets.Wizard;
-import java.awt.*;
-import javax.swing.*;
 
 class GeneralPage extends Wizard.WizardPage {
     private final DataModel<String> simulationModel;
     private final DataModel<Object> sprintModel;
+    private final DataModel<String> sprintDurationModel;
 
-    public GeneralPage(DataModel<String> simulationModel, DataModel<Object> sprintModel) {
+    public GeneralPage(DataModel<String> simulationModel, DataModel<Object> sprintModel,DataModel<String> sprintDuration) {
         this.simulationModel = simulationModel;
         this.sprintModel = sprintModel;
+        this.sprintDurationModel = sprintDuration;
     }
 
     @Override
@@ -39,6 +49,11 @@ class GeneralPage extends Wizard.WizardPage {
                         new JSpinner(new SpinnerNumberModel(1, 1, 20, 1)),
                         sprintModel);
 
+        TextInput sprintDurationInput =
+                new TextInput(
+                        "Sprint Duration(Days): ", new JTextField(sprintDurationModel.getData(), 5), sprintDurationModel);
+
+
         inputs.add(
                 resuableHeader,
                 new GridBagConstraintsBuilder()
@@ -59,6 +74,14 @@ class GeneralPage extends Wizard.WizardPage {
                 new GridBagConstraintsBuilder()
                         .setGridX(0)
                         .setGridY(2)
+                        .setWeightX(1)
+                        .setFill(GridBagConstraints.HORIZONTAL));
+
+        inputs.add(
+                sprintDurationInput,
+                new GridBagConstraintsBuilder()
+                        .setGridX(0)
+                        .setGridY(3)
                         .setWeightX(1)
                         .setFill(GridBagConstraints.HORIZONTAL));
 
