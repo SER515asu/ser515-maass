@@ -39,15 +39,15 @@ public class UserStoryListPane extends JFrame implements BaseComponent {
         //        widgets.add(new UserStoryWidget(aUserStory));
         //        widgets.add(new UserStoryWidget(aUserStory2));
         JPanel headerPanel = new JPanel(new GridBagLayout());
-        headerPanel.add(new JLabel("ID"), new CustomConstraints(0, 0, GridBagConstraints.WEST, 0.1, 0.0, GridBagConstraints.HORIZONTAL));
-        headerPanel.add(new JLabel("Points"), new CustomConstraints(1, 0, GridBagConstraints.WEST, 0.1, 0.0, GridBagConstraints.HORIZONTAL));
-        headerPanel.add(new JLabel("Name"), new CustomConstraints(2, 0, GridBagConstraints.WEST, 0.2, 0.0, GridBagConstraints.HORIZONTAL));
-        headerPanel.add(new JLabel("Description"), new CustomConstraints(3, 0, GridBagConstraints.WEST, 0.4, 0.0, GridBagConstraints.HORIZONTAL));
-        headerPanel.add(new JLabel("SprintValue"), new CustomConstraints(4, 0, GridBagConstraints.WEST, 0.2, 0.0, GridBagConstraints.HORIZONTAL));
-        headerPanel.add(new JLabel("BusinessValue"), new CustomConstraints(5, 0, GridBagConstraints.WEST, 0.4, 0.0, GridBagConstraints.HORIZONTAL));
+        headerPanel.add(new JLabel("ID"), new CustomConstraints(-1, 1, GridBagConstraints.WEST, 0.1, 0.0, GridBagConstraints.HORIZONTAL));
+        headerPanel.add(new JLabel("Points"), new CustomConstraints(GridBagConstraints.RELATIVE, 1, GridBagConstraints.WEST, 0.1, 0.0, GridBagConstraints.HORIZONTAL));
+        headerPanel.add(new JLabel("Name"), new CustomConstraints(GridBagConstraints.RELATIVE, 1, GridBagConstraints.WEST, 0.2, 0.0, GridBagConstraints.HORIZONTAL));
+        headerPanel.add(new JLabel("Description"), new CustomConstraints(GridBagConstraints.RELATIVE, 1, GridBagConstraints.WEST, 0.2, 0.0, GridBagConstraints.HORIZONTAL));
+        headerPanel.add(new JLabel("SprintValue"), new CustomConstraints(GridBagConstraints.RELATIVE, 1, GridBagConstraints.WEST, 0.2, 0.0, GridBagConstraints.HORIZONTAL));
+        headerPanel.add(new JLabel("BusinessValue"), new CustomConstraints(GridBagConstraints.RELATIVE, 1, GridBagConstraints.WEST, 0.2, 0.0, GridBagConstraints.HORIZONTAL));
 
         JPanel subPanel = new JPanel();
-        subPanel.add(headerPanel, new CustomConstraints(0, 0, GridBagConstraints.WEST, 1.0, 0.0, GridBagConstraints.HORIZONTAL));
+      //  subPanel.add(headerPanel, new CustomConstraints(0, 0, GridBagConstraints.WEST, 1.0, 0.0, GridBagConstraints.HORIZONTAL));
 
         for (UserStory userStory : UserStoryStore.getInstance().getUserStories()) {
             widgets.add(new UserStoryWidget(userStory));

@@ -71,29 +71,29 @@ public class UserStoryWidget extends JPanel implements BaseComponent {
         add(
             id,
             new CustomConstraints(
-                    0, 0, GridBagConstraints.WEST, 0.1, 0.0, GridBagConstraints.HORIZONTAL));
+                    0, 1, GridBagConstraints.WEST, 0.1, 0.0, GridBagConstraints.HORIZONTAL));
         add(
             points,
             new CustomConstraints(
-                    1, 0, GridBagConstraints.WEST, 0.1, 0.0, GridBagConstraints.HORIZONTAL));
+                    1, 1, GridBagConstraints.WEST, 0.1, 0.0, GridBagConstraints.HORIZONTAL));
         add(
             name,
             new CustomConstraints(
-                    2, 0, GridBagConstraints.WEST, 0.2, 0.0, GridBagConstraints.HORIZONTAL));
+                    2, 1, GridBagConstraints.WEST, 0.2, 0.0, GridBagConstraints.HORIZONTAL));
         add(
                 desc,
                 new CustomConstraints(
-                        3, 0, GridBagConstraints.WEST, 0.7, 0.0, GridBagConstraints.HORIZONTAL));
+                        3, 1, GridBagConstraints.WEST, 0.7, 0.0, GridBagConstraints.HORIZONTAL));
         add(
                 SprintValue,
                 new CustomConstraints(
-                        4, 0, GridBagConstraints.WEST, 0.7, 0.0, GridBagConstraints.HORIZONTAL
+                        4, 1, GridBagConstraints.WEST, 0.7, 0.0, GridBagConstraints.HORIZONTAL
                 )
         );
 
         add(
             businessValue,  
             new CustomConstraints(
-                    4, 0, GridBagConstraints.WEST, 0.2, 0.0, GridBagConstraints.HORIZONTAL));
+                    5, 1, GridBagConstraints.WEST, 0.4, 0.0, GridBagConstraints.HORIZONTAL));
     }
 }
