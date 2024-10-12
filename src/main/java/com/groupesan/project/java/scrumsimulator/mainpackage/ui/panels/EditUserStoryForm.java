@@ -1,15 +1,25 @@
 package com.groupesan.project.java.scrumsimulator.mainpackage.ui.panels;
 
+import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
 import com.groupesan.project.java.scrumsimulator.mainpackage.impl.UserStory;
 import com.groupesan.project.java.scrumsimulator.mainpackage.impl.UserStoryStore;
 import com.groupesan.project.java.scrumsimulator.mainpackage.ui.widgets.BaseComponent;
 import com.groupesan.project.java.scrumsimulator.mainpackage.utils.CustomConstraints;
-
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class EditUserStoryForm extends JFrame implements BaseComponent {
 
@@ -96,11 +106,11 @@ public class EditUserStoryForm extends JFrame implements BaseComponent {
         myJpanel.add(
                 businessValueLabel,
                 new CustomConstraints(
-                        0, 3, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL));
+                        0, 4, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL));
         myJpanel.add(
                 businessValueCombo,
                 new CustomConstraints(
-                        1, 3, GridBagConstraints.EAST, 1.0, 0.0, GridBagConstraints.HORIZONTAL));
+                        1, 4, GridBagConstraints.EAST, 1.0, 0.0, GridBagConstraints.HORIZONTAL));
         
         JButton cancelButton = new JButton("Cancel");
         cancelButton.addActionListener(
@@ -148,14 +158,14 @@ public class EditUserStoryForm extends JFrame implements BaseComponent {
 
         myJpanel.add(
                 cancelButton,
-                new CustomConstraints(0, 4, GridBagConstraints.EAST, GridBagConstraints.NONE));
+                new CustomConstraints(0, 5, GridBagConstraints.EAST, GridBagConstraints.NONE));
         myJpanel.add(
                 submitButton,
-                new CustomConstraints(1, 4, GridBagConstraints.WEST, GridBagConstraints.NONE));
+                new CustomConstraints(1, 5, GridBagConstraints.WEST, GridBagConstraints.NONE));
 
         myJpanel.add(
                 deleteStoryButton,
-                new CustomConstraints(1, 3, GridBagConstraints.EAST, GridBagConstraints.NONE));
+                new CustomConstraints(2, 5, GridBagConstraints.EAST, GridBagConstraints.NONE));
 
         add(myJpanel);
     }
