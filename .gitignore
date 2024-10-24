@@ -5,8 +5,6 @@ build/
 .gradle
 .gradletasknamecache
 gradle-app.setting
-!gradle-wrapper.jar
-
 ## IntelliJ
 ##############################
 out/
@@ -31,3 +29,9 @@ out/
 *.nar
 hs_err_pid*
 replay_pid*
+
+# These are important
+!gradle/wrapper/
+!gradle/wrapper/gradle-wrapper.jar
+!gradlew
+!gradlew.bat
