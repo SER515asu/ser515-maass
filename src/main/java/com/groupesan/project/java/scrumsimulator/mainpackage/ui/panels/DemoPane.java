@@ -220,5 +220,22 @@ public class DemoPane extends JFrame implements BaseComponent {
                         9, 0, GridBagConstraints.WEST, 1.0, 1.0, GridBagConstraints.HORIZONTAL));
 
         add(myJpanel);
+
+        JButton SprintactivityButton = new JButton("Sprint Activity log");
+        SprintactivityButton.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                    }
+                });
+
+        // Adding the button to the panel
+        myJpanel.add(
+                SprintactivityButton,
+                new CustomConstraints(
+                        2, 1, GridBagConstraints.WEST, 1.0, 1.0, GridBagConstraints.HORIZONTAL));
+
+        add(myJpanel);
     }
 }
