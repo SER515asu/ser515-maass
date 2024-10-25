@@ -1,9 +1,8 @@
 package com.groupesan.project.java.scrumsimulator.mainpackage.impl;
 import java.util.List;
-import java.io.Serializable;
 import java.util.UUID;
 
-public class Blocker implements Serializable {
+public class Blocker {
     private final UUID id;
     private String name;
     private double probability;
@@ -32,15 +31,22 @@ public class Blocker implements Serializable {
         return solutions;
     }
 
-    // Getters and setters
+    // Method to get name
     public String getName() {
         return name;
     }
 
+    // Method to set name
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // Method to get probability
     public double getProbability() {
         return probability;
     }
 
+    // Method to set probability
     public void setProbability(double probability) {
         this.probability = probability;
     }
