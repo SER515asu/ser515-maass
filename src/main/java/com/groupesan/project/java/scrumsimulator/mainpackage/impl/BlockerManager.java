@@ -10,6 +10,7 @@ public class BlockerManager {
 
     public BlockerManager() {
         blockers = new ArrayList<>();
+        //TODO - Currently we're adding dummy lockers for the understanding of the functionality. These will be replaced by actual blockers in subsequent tasks.
         addBlocker("Blocker 1");
         addBlocker("Blocker 2");
         addBlocker("Blocker 3");
