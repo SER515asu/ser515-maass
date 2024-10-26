@@ -30,7 +30,7 @@ public class DemoPane extends JFrame implements BaseComponent {
     public void init() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Demo");
-        setSize(1200, 300);
+        setSize(1500, 300);
 
         GridBagLayout myGridbagLayout = new GridBagLayout();
         JPanel myJpanel = new JPanel();
