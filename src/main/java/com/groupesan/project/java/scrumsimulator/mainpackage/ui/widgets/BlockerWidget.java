@@ -20,14 +20,6 @@ public class BlockerWidget extends JPanel implements BaseComponent {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     //TODO: Open panel for edit blocker
-//                    form.setVisible(true);
-
-//                    form.addWindowListener(
-//                            new java.awt.event.WindowAdapter() {
-//                                public void windowClosed(java.awt.event.WindowEvent windowEvent) {
-//                                    init();  // Refresh UI when form is closed
-//                                }
-//                            });
                 }
             };
 
@@ -40,11 +32,10 @@ public class BlockerWidget extends JPanel implements BaseComponent {
         // Clear previous components
         removeAll();
 
-        name = new JLabel(blocker.getName());
-        name.addMouseListener(openEditDialog);
         probability = new JLabel(String.valueOf(blocker.getProbability()));
         probability.addMouseListener(openEditDialog);
-
+        name = new JLabel(blocker.getName());
+        name.addMouseListener(openEditDialog);
         
         GridBagLayout myGridBagLayout = new GridBagLayout();
         setLayout(myGridBagLayout);
