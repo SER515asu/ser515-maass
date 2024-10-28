@@ -9,16 +9,25 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class BlockerStore {
-    private static final Logger LOGGER = Logger.getLogger(BlockerStore.class.getName());
     private static BlockerStore blockerStore;
+
+    public static BlockerStore getInstance() {
+        if (blockerStore == null) {
+            blockerStore = new BlockerStore();
+        }
+        return blockerStore;
+    }
+
     private List<Blocker> blocker;
+
+    public BlockerStore() {
+        blocker = new ArrayList<>();
+    }
+
+    private static final Logger LOGGER = Logger.getLogger(BlockerStore.class.getName());
     private static final String READ_FILE_PATH = "blockers.json";
     private static final String FILE_PATH = "src/main/resources/blockers.json";
     private final ObjectMapper objectMapper = new ObjectMapper();
-
-    public BlockerStore() {
-        this.blocker = new ArrayList<>();
-    }
 
     public void loadFromJson() {
         blocker = new ArrayList<>();
@@ -43,13 +52,6 @@ public class BlockerStore {
         }
     }
 
-    public static BlockerStore getInstance() {
-        if (blockerStore == null) {
-            blockerStore = new BlockerStore();
-        }
-        return blockerStore;
-    }
-
     //returns blocker
     public List<Blocker> getBlockers() {
         return blocker;
@@ -59,5 +61,6 @@ public class BlockerStore {
     public void setBlockers(List<Blocker> blocker) {
         this.blocker = blocker;
     }
+
 }
 
