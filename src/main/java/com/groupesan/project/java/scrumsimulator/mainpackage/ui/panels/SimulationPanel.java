@@ -1,15 +1,19 @@
 package com.groupesan.project.java.scrumsimulator.mainpackage.ui.panels;
 
-import com.groupesan.project.java.scrumsimulator.mainpackage.impl.BlockerManager;
-import com.groupesan.project.java.scrumsimulator.mainpackage.state.SimulationStateManager;
-import com.groupesan.project.java.scrumsimulator.mainpackage.ui.widgets.BaseComponent;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import com.groupesan.project.java.scrumsimulator.mainpackage.impl.BlockerManager;
+import com.groupesan.project.java.scrumsimulator.mainpackage.state.SimulationStateManager;
+import com.groupesan.project.java.scrumsimulator.mainpackage.ui.widgets.BaseComponent;
 
 public class SimulationPanel extends JPanel implements BaseComponent {
 
@@ -40,25 +44,6 @@ public class SimulationPanel extends JPanel implements BaseComponent {
         spikeActivityButton.setVisible(false);
         BlockerManager blockerManager = new BlockerManager();
 
-        GridBagConstraints startsimulation = new GridBagConstraints();
-        startsimulation.gridx = 0; 
-        startsimulation.gridy = 0;
-        startsimulation.insets = new Insets(10, 10, 10, 10);
-        this.add(startSimulationButton, startsimulation);
-
-        GridBagConstraints stopsimulation = new GridBagConstraints();
-        stopsimulation.gridx = 1; 
-        stopsimulation.gridy = 0;
-        stopsimulation.insets = new Insets(10, 10, 10, 10);
-        this.add(stopSimulationButton, stopsimulation);
-
-        GridBagConstraints ShowBlockers = new GridBagConstraints();
-        ShowBlockers.gridx = 2; 
-        ShowBlockers.gridy = 0;
-        ShowBlockers.insets = new Insets(10, 10, 10, 10);
-        showBlockersButton.setBackground(Color.RED);
-        this.add(showBlockersButton, ShowBlockers);
-
         GridBagConstraints spikeactivity = new GridBagConstraints();
         spikeactivity.gridx = 2; 
         spikeactivity.gridy = 1;
@@ -75,6 +60,13 @@ public class SimulationPanel extends JPanel implements BaseComponent {
                 updateButtonVisibility();
                 spikeActivityButton.setVisible(true);
                 showBlockersButton.setVisible(true);
+                if(blockerManager.isBlockerListEmpty()==false)
+                {
+                    showBlockersButton.setBackground(Color.RED);}
+                else{
+                    showBlockersButton.setBackground(Color.GREEN);
+                    showBlockersButton.setText("No Blockers!");
+                }
                 revalidate();
                 repaint();
             }
@@ -83,11 +75,14 @@ public class SimulationPanel extends JPanel implements BaseComponent {
         stopSimulationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (blockerManager.isBlockerListEmpty()) {
+
+                if(blockerManager.isBlockerListEmpty()==true){
                     simulationStateManager.stopSimulation();
                     JOptionPane.showMessageDialog(null, "Simulation stopped!");
-                    updateButtonVisibility();
                     showBlockersButton.setVisible(false);
+                    showBlockersButton.setBackground(Color.GREEN);
+                    showBlockersButton.setText("No Blockers!");
+                    updateButtonVisibility();
                     spikeActivityButton.setVisible(false);
                     revalidate();
                     repaint();
@@ -97,18 +92,33 @@ public class SimulationPanel extends JPanel implements BaseComponent {
             }
         });
 
+
         showBlockersButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 blockerManager.showBlockersPanel();
+                if(blockerManager.isBlockerListEmpty()==true){
+                    showBlockersButton.setBackground(Color.GREEN);
+                    showBlockersButton.setText("No Blockers!");
+                }
+                else{
+                    showBlockersButton.setBackground(Color.RED);}
+                revalidate();
+                repaint();
             }
         });
+        add(startSimulationButton);
+        add(stopSimulationButton);
+        add(showBlockersButton);
+        add(spikeActivityButton);
+
     }
 
     private void updateButtonVisibility() {
         if (simulationStateManager.isRunning()) {
             stopSimulationButton.setVisible(true);
             startSimulationButton.setVisible(false);
+            showBlockersButton.setVisible(true);
         } else {
             stopSimulationButton.setVisible(false);
             startSimulationButton.setVisible(true);
