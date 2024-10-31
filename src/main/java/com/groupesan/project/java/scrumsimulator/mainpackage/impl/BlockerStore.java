@@ -18,10 +18,10 @@ public class BlockerStore {
         return blockerStore;
     }
 
-    private List<SprintBlocker> sprintBlockers;
+    private List<Blocker> blocker;
 
     public BlockerStore() {
-        sprintBlockers = new ArrayList<>();
+        blocker = new ArrayList<>();
     }
 
     private static final Logger LOGGER = Logger.getLogger(BlockerStore.class.getName());
@@ -30,36 +30,37 @@ public class BlockerStore {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     public void loadFromJson() {
-        sprintBlockers = new ArrayList<>();
+        blocker = new ArrayList<>();
         try (InputStream is = getClass().getClassLoader().getResourceAsStream(READ_FILE_PATH)) {
             if (is != null) {
-                sprintBlockers = objectMapper.readValue(is, objectMapper.getTypeFactory().constructCollectionType(List.class, SprintBlocker.class));
+                blocker = objectMapper.readValue(is, objectMapper.getTypeFactory().constructCollectionType(List.class, Blocker.class));
             } else {
-                sprintBlockers = new ArrayList<>();
+                blocker = new ArrayList<>();
                 System.err.println("File not found: " + READ_FILE_PATH);
             }
         } catch (Exception e) {
-            sprintBlockers = new ArrayList<>();
+            blocker = new ArrayList<>();
             LOGGER.log(Level.SEVERE, "Failed to load blockers from JSON", e);
         }
     }
 
     public void saveToJson() {
         try (OutputStream os = new FileOutputStream(FILE_PATH)) {
-            objectMapper.writeValue(os, sprintBlockers);
+            objectMapper.writeValue(os, blocker);
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Failed to save blockers to JSON", e);
         }
     }
 
     //returns blocker
-    public List<SprintBlocker> getBlockers() {
-        return sprintBlockers;
+    public List<Blocker> getBlockers() {
+        return blocker;
     }
 
     // set blocker
-    public void setBlockers(List<SprintBlocker> sprintBlockers) {
-        this.sprintBlockers = sprintBlockers;
+    public void setBlockers(List<Blocker> blocker) {
+        this.blocker = blocker;
     }
 
 }
+
