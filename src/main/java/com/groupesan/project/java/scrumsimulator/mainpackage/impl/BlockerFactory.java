@@ -4,26 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BlockerFactory {
-    private BlockerStore blockerStore;
+    private static BlockerFactory blockerFactory;
 
-    public BlockerFactory() {
-        blockerStore = BlockerStore.getInstance();
-        if (blockerStore.getBlockers() == null) {
-            blockerStore.setBlockers(new ArrayList<>());
+    public static BlockerFactory getInstance() {
+        if(blockerFactory == null) {
+            blockerFactory = new BlockerFactory();
         }
+        return blockerFactory;
     }
 
-    public List<SprintBlocker> getAllBlockers() {
-        return blockerStore.getBlockers();
-    }
-
-    public void addBlocker(SprintBlocker sprintBlocker) {
-        blockerStore.getBlockers().add(sprintBlocker);
-        saveChanges();
-    }
-
-    public void saveChanges() {
-        blockerStore.saveToJson();
-    }
+    private BlockerFactory() {}
 }
-
