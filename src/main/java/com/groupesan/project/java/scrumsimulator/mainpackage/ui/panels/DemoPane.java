@@ -205,11 +205,12 @@ public class DemoPane extends JFrame implements BaseComponent {
                         8, 0, GridBagConstraints.WEST, 1.0, 1.0, GridBagConstraints.HORIZONTAL));
 
         JButton KnownBlockersButtons = new JButton("Known Blockers");
-        SprintUIButton.addActionListener(
+        KnownBlockersButtons.addActionListener(
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-
+                        BlockerSimulationUI knownBlockersPane = new BlockerSimulationUI();
+                        knownBlockersPane.setVisible(true);
                     }
                 });
 
