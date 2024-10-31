@@ -1,18 +1,22 @@
 package com.groupesan.project.java.scrumsimulator.mainpackage.impl;
+
 import java.util.List;
 import java.util.UUID;
+import java.util.ArrayList;
 
-public class Blocker {
+public class SprintBlocker {
     private final UUID id;
     private String name;
     private double probability;
     private List<Solution> solutions;
 
-    public Blocker() {
+    public SprintBlocker() {
+
         this.id = UUID.randomUUID();
+        this.solutions = new ArrayList<>();
     }
 
-    public Blocker(String name, double probability, List<Solution> solutions) {
+    public SprintBlocker(String name, double probability, List<Solution> solutions) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.probability = probability;

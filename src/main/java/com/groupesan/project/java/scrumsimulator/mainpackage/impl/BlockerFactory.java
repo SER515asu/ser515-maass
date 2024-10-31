@@ -13,12 +13,12 @@ public class BlockerFactory {
         }
     }
 
-    public List<Blocker> getAllBlockers() {
+    public List<SprintBlocker> getAllBlockers() {
         return blockerStore.getBlockers();
     }
 
-    public void addBlocker(Blocker blocker) {
-        blockerStore.getBlockers().add(blocker);
+    public void addBlocker(SprintBlocker sprintBlocker) {
+        blockerStore.getBlockers().add(sprintBlocker);
         saveChanges();
     }
 

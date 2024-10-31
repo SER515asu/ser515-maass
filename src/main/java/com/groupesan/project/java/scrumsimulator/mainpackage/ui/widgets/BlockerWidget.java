@@ -1,6 +1,6 @@
 package com.groupesan.project.java.scrumsimulator.mainpackage.ui.widgets;
 
-import com.groupesan.project.java.scrumsimulator.mainpackage.impl.Blocker;
+import com.groupesan.project.java.scrumsimulator.mainpackage.impl.SprintBlocker;
 import com.groupesan.project.java.scrumsimulator.mainpackage.utils.CustomConstraints;
 
 import javax.swing.*;
@@ -13,7 +13,7 @@ public class BlockerWidget extends JPanel implements BaseComponent {
     JLabel name;
     JLabel probability;
 
-   private Blocker blocker;
+   private SprintBlocker sprintBlocker;
 
     private MouseAdapter openEditDialog =
             new MouseAdapter() {
@@ -23,8 +23,8 @@ public class BlockerWidget extends JPanel implements BaseComponent {
                 }
             };
 
-    public BlockerWidget(Blocker blocker) {
-        this.blocker = blocker;
+    public BlockerWidget(SprintBlocker sprintBlocker) {
+        this.sprintBlocker = sprintBlocker;
         this.init();
     }
 
@@ -32,9 +32,9 @@ public class BlockerWidget extends JPanel implements BaseComponent {
         // Clear previous components
         removeAll();
 
-        probability = new JLabel(String.valueOf(blocker.getProbability()));
+        probability = new JLabel(String.valueOf(sprintBlocker.getProbability()));
         probability.addMouseListener(openEditDialog);
-        name = new JLabel(blocker.getName());
+        name = new JLabel(sprintBlocker.getName());
         name.addMouseListener(openEditDialog);
         
         GridBagLayout myGridBagLayout = new GridBagLayout();

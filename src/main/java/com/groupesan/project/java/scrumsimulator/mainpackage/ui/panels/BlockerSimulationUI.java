@@ -1,6 +1,6 @@
 package com.groupesan.project.java.scrumsimulator.mainpackage.ui.panels;
 
-import com.groupesan.project.java.scrumsimulator.mainpackage.impl.Blocker;
+import com.groupesan.project.java.scrumsimulator.mainpackage.impl.SprintBlocker;
 import com.groupesan.project.java.scrumsimulator.mainpackage.impl.BlockerStore;
 import com.groupesan.project.java.scrumsimulator.mainpackage.ui.widgets.BaseComponent;
 import com.groupesan.project.java.scrumsimulator.mainpackage.ui.widgets.BlockerWidget;
@@ -38,8 +38,8 @@ public class BlockerSimulationUI extends JFrame implements BaseComponent {
         headerPanel.add(new JLabel("Probability"), new CustomConstraints(GridBagConstraints.RELATIVE, 1, GridBagConstraints.WEST, 0.1, 0.0, GridBagConstraints.HORIZONTAL));
 
         // Initialize Blocker Widgets
-        for (Blocker blocker : BlockerStore.getInstance().getBlockers()) {
-            blockersWidget.add(new BlockerWidget(blocker));
+        for (SprintBlocker sprintBlocker : BlockerStore.getInstance().getBlockers()) {
+            blockersWidget.add(new BlockerWidget(sprintBlocker));
         }
 
         // Sub Panel

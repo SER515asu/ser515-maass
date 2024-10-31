@@ -20,4 +20,9 @@
             <Bug pattern="SE_BAD_FIELD_STORE" />
         </Class>
     </Match>
+    <Match>
+        <Class name="com.groupesan.project.java.scrumsimulator.mainpackage.ui.widgets.BlockerWidget">
+            <Bug pattern="SE_BAD_FIELD_STORE" />
+        </Class>
+    </Match>
 </FindBugsFilter>
