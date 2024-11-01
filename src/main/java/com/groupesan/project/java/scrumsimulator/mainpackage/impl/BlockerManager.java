@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class BlockerManager {
-    private ArrayList<String> blockers;
+    ArrayList<String> blockers;
 
     public BlockerManager() {
         blockers = new ArrayList<>();
