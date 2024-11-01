@@ -41,7 +41,7 @@ public class SimulationPanel extends JPanel implements BaseComponent {
         showBlockersButton.setVisible(false);
         spikeActivityButton.setVisible(false);
 
-        GridBagConstraints gbc = new GridBagConstraints();
+     //   GridBagConstraints gbc = new GridBagConstraints();
 //        gbc.insets = new Insets(10, 10, 10, 10);
 //        gbc.fill = GridBagConstraints.HORIZONTAL;
 //
