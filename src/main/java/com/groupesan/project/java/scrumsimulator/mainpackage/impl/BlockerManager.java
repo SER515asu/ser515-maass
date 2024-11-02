@@ -7,14 +7,17 @@ import java.awt.event.*;
 
 public class BlockerManager {
     ArrayList<String> blockers;
+    private static BlockerManager blockerManager;
+
+    public static BlockerManager getInstance() {
+        if (blockerManager == null) {
+            blockerManager = new BlockerManager();
+        }
+        return blockerManager;
+    }
 
     public BlockerManager() {
         blockers = new ArrayList<>();
-        //TODO - Currently we're adding dummy lockers for the understanding of the functionality. These will be replaced by actual blockers in subsequent tasks.
-        addBlocker("Blocker 1");
-        addBlocker("Blocker 2");
-        addBlocker("Blocker 3");
-        addBlocker("Blocker 4");
     }
 
     public void addBlocker(String blocker) {
