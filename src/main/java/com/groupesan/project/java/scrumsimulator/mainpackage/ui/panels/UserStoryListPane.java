@@ -31,13 +31,6 @@ public class UserStoryListPane extends JFrame implements BaseComponent {
         myJpanel.setBorder(new EmptyBorder(10, 10, 10, 10));
         myJpanel.setLayout(myGridbagLayout);
 
-        // demo/testing widgets
-        //        UserStory aUserStory = UserStoryFactory.getInstance().createNewUserStory("foo",
-        // "bar", 2);
-        //        UserStory aUserStory2 =
-        //                UserStoryFactory.getInstance().createNewUserStory("foo2", "bar2", 4);
-        //        widgets.add(new UserStoryWidget(aUserStory));
-        //        widgets.add(new UserStoryWidget(aUserStory2));
         JPanel headerPanel = new JPanel(new GridBagLayout());
         headerPanel.add(new JLabel("ID"), new CustomConstraints(-1, 1, GridBagConstraints.WEST, 0.1, 0.0, GridBagConstraints.HORIZONTAL));
         headerPanel.add(new JLabel("Points"), new CustomConstraints(GridBagConstraints.RELATIVE, 1, GridBagConstraints.WEST, 0.1, 0.0, GridBagConstraints.HORIZONTAL));
@@ -84,21 +77,17 @@ public class UserStoryListPane extends JFrame implements BaseComponent {
 
                         form.addWindowListener(
                                 new java.awt.event.WindowAdapter() {
-                                    public void windowClosed(
-                                            java.awt.event.WindowEvent windowEvent) {
+                                    public void windowClosed(java.awt.event.WindowEvent windowEvent) {
                                         UserStory userStory = form.getUserStoryObject();
-                                        UserStoryStore.getInstance().addUserStory(userStory);
-                                        widgets.add(new UserStoryWidget(userStory));
-                                        int idx = widgets.size() - 1;
-                                        subPanel.add(
-                                                widgets.get(idx),
-                                                new CustomConstraints(
-                                                        0,
-                                                        idx,
-                                                        GridBagConstraints.WEST,
-                                                        1.0,
-                                                        0.1,
-                                                        GridBagConstraints.HORIZONTAL));
+                                        if (userStory != null) {
+                                            UserStoryStore.getInstance().addUserStory(userStory);
+                                            UserStoryWidget widget = new UserStoryWidget(userStory);
+                                            widgets.add(widget);
+                                            int index = widgets.size()-1;
+                                            subPanel.add( widget, new CustomConstraints(0, index, GridBagConstraints.WEST, 1.0, 0.1, GridBagConstraints.HORIZONTAL));
+                                            subPanel.revalidate();
+                                            subPanel.repaint();
+                                        }
                                     }
                                 });
                     }
