@@ -6,8 +6,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class BlockerManager {
+    ArrayList<String> blockers;
     private static BlockerManager blockerManager;
-    private ArrayList<String> blockers;
 
     public static BlockerManager getInstance() {
         if (blockerManager == null) {
