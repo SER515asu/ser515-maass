@@ -7,6 +7,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.security.SecureRandom;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -26,6 +27,7 @@ public class SimulationPanel extends JPanel implements BaseComponent {
     private JButton showBlockersButton;
     private JButton resolveBlockerButton;
     private JButton spikeActivityButton;
+    private static final SecureRandom secRandom = new SecureRandom();
 
     /** Simulation Panel Initialization. */
     protected SimulationPanel(SimulationStateManager simulationStateManager) {
@@ -35,7 +37,7 @@ public class SimulationPanel extends JPanel implements BaseComponent {
     }
 
     private void populateBlockers(){
-        double randomNumber = Math.random();
+        double randomNumber = getNextRandomDouble();
         BlockerStore blockerStore = BlockerStore.getInstance();
         blockerStore.loadFromJson();
         List<SprintBlocker> blockers = blockerStore.getBlockers();
@@ -45,6 +47,10 @@ public class SimulationPanel extends JPanel implements BaseComponent {
                 blockerManager.addBlocker(blocker.getName());
             }
         }
+    }
+
+    private static double getNextRandomDouble() {
+        return secRandom.nextDouble();
     }
 
     @Override
