@@ -22,11 +22,16 @@ public class SpikePanel extends JPanel {
         spikeTableModel = new DefaultTableModel(columns, 0) {
             @Override
             public Class<?> getColumnClass(int column) {
-                return column == 3 ? Boolean.class : String.class;
+                if (column == 3) {
+                    return Boolean.class;
+                } else {
+                    return String.class;
+                }
             }
         };
 
-        JTable spikeTable = new JTable(spikeTableModel);
+
+            JTable spikeTable = new JTable(spikeTableModel);
         spikeTable.getColumnModel().getColumn(3).setCellEditor(new DefaultCellEditor(new JCheckBox()));
         spikeTable.getColumnModel().getColumn(3).setCellRenderer(new TableCellRenderer() {
             @Override
@@ -51,7 +56,7 @@ public class SpikePanel extends JPanel {
         addNewSpikeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Implement logic to add a new spike
+
             }
         });
 
