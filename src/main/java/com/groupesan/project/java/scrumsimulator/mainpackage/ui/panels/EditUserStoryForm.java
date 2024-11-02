@@ -169,4 +169,8 @@ public class EditUserStoryForm extends JFrame implements BaseComponent {
 
         add(myJpanel);
     }
+
+    public UserStory getUserStoryObject() {
+        return userStory;
+    }
 }
