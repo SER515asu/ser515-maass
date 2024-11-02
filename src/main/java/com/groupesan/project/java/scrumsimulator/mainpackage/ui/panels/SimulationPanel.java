@@ -32,7 +32,7 @@ public class SimulationPanel extends JPanel implements BaseComponent {
     /** Simulation Panel Initialization. */
     protected SimulationPanel(SimulationStateManager simulationStateManager) {
         this.simulationStateManager = simulationStateManager;
-        this.setLayout(new GridBagLayout()); 
+        this.setLayout(new GridBagLayout());
         this.init();
     }
 
@@ -129,7 +129,15 @@ public class SimulationPanel extends JPanel implements BaseComponent {
                 revalidate();
                 repaint();
             }
-        });
+		});
+
+		spikeActivityButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SpikePanel spikePanel = new SpikePanel();
+				spikePanel.showSpikeLogFrame();
+			}
+		});
         add(startSimulationButton);
         add(stopSimulationButton);
         add(showBlockersButton);
