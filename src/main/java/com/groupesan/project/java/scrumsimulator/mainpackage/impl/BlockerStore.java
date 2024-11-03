@@ -1,12 +1,14 @@
 package com.groupesan.project.java.scrumsimulator.mainpackage.impl;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class BlockerStore {
     private static BlockerStore blockerStore;
@@ -60,6 +62,12 @@ public class BlockerStore {
     // set blocker
     public void setBlockers(List<SprintBlocker> sprintBlocker) {
         this.sprintBlocker = sprintBlocker;
+    }
+
+    // add blocker
+    public void addBlocker(SprintBlocker blocker) {
+        sprintBlocker.add(blocker);
+        saveToJson();
     }
 
 }

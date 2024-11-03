@@ -6,8 +6,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 import java.security.SecureRandom;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -85,10 +85,13 @@ public class SimulationPanel extends JPanel implements BaseComponent {
                 showBlockersButton.setVisible(true);
                 if(blockerManager.isBlockerListEmpty()==false)
                 {
-                    showBlockersButton.setBackground(Color.RED);}
+                    showBlockersButton.setBackground(Color.RED);
+                    showBlockersButton.setText("Resolve Blockers!");}
                 else{
                     showBlockersButton.setBackground(Color.GREEN);
                     showBlockersButton.setText("No Blockers!");
+                    revalidate();
+                    repaint();
                 }
                 revalidate();
                 repaint();

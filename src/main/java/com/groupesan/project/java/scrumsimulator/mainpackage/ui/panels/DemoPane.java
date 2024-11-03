@@ -1,19 +1,21 @@
 package com.groupesan.project.java.scrumsimulator.mainpackage.ui.panels;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
 import com.groupesan.project.java.scrumsimulator.mainpackage.core.Player;
 import com.groupesan.project.java.scrumsimulator.mainpackage.core.ScrumRole;
 import com.groupesan.project.java.scrumsimulator.mainpackage.state.SimulationManager;
 import com.groupesan.project.java.scrumsimulator.mainpackage.state.SimulationStateManager;
 import com.groupesan.project.java.scrumsimulator.mainpackage.ui.widgets.BaseComponent;
 import com.groupesan.project.java.scrumsimulator.mainpackage.utils.CustomConstraints;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 public class DemoPane extends JFrame implements BaseComponent {
     private Player player = new Player("bob", new ScrumRole("demo"));
@@ -170,6 +172,7 @@ public class DemoPane extends JFrame implements BaseComponent {
                 new CustomConstraints(
                         1, 1, GridBagConstraints.WEST, 1.0, 1.0, GridBagConstraints.HORIZONTAL));
 
+   
         // New button for Variant Simulation UI
         JButton variantSimulationUIButton = new JButton("Variant Simulation UI");
         variantSimulationUIButton.addActionListener(
@@ -219,23 +222,6 @@ public class DemoPane extends JFrame implements BaseComponent {
                 KnownBlockersButtons,
                 new CustomConstraints(
                         9, 0, GridBagConstraints.WEST, 1.0, 1.0, GridBagConstraints.HORIZONTAL));
-
-        add(myJpanel);
-
-        JButton SprintactivityButton = new JButton("Sprint Activity log");
-        SprintactivityButton.addActionListener(
-                new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-
-                    }
-                });
-
-        // Adding the button to the panel
-        myJpanel.add(
-                SprintactivityButton,
-                new CustomConstraints(
-                        2, 1, GridBagConstraints.WEST, 1.0, 1.0, GridBagConstraints.HORIZONTAL));
 
         add(myJpanel);
     }

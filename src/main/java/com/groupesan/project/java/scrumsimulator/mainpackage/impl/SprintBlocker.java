@@ -1,8 +1,8 @@
 package com.groupesan.project.java.scrumsimulator.mainpackage.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.ArrayList;
 
 public class SprintBlocker {
     private final UUID id;
@@ -16,7 +16,7 @@ public class SprintBlocker {
         this.solutions = new ArrayList<>();
     }
 
-    public SprintBlocker(String name, double probability, List<Solution> solutions) {
+    public SprintBlocker(String name, double probability,List<Solution> solutions) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.probability = probability;
@@ -25,42 +25,43 @@ public class SprintBlocker {
 
     public UUID getId() { return id; }
 
-    // Method to add a solution
     public void addSolution(Solution solution) {
         solutions.add(solution);
     }
 
-    // Method to get solutions
     public List<Solution> getSolutions() {
         return solutions;
     }
 
-    // Method to get name
+    public void setSolutions(List<Solution> solutions) {
+        this.solutions = solutions;
+    }
+
     public String getName() {
         return name;
     }
 
-    // Method to set name
     public void setName(String name) {
         this.name = name;
     }
 
-    // Method to get probability
     public double getProbability() {
         return probability;
     }
 
-    // Method to set probability
     public void setProbability(double probability) {
         this.probability = probability;
     }
 
+
     @Override
     public String toString() {
-        return "Blocker{" +
-                "name='" + name + '\'' +
+        return "SprintBlocker{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", probability=" + probability +
                 ", solutions=" + solutions +
                 '}';
+
     }
 }
