@@ -1,8 +1,8 @@
 package com.groupesan.project.java.scrumsimulator.mainpackage.impl;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Solution {
@@ -18,6 +18,11 @@ public class Solution {
         this.id = UUID.randomUUID();
         this.name = name;
         this.successProb = successProb;
+    }
+
+    public Solution(String name) {
+        this.id = UUID.randomUUID();
+        this.name = name;
     }
 
     // Method to get name
@@ -42,10 +47,7 @@ public class Solution {
 
     @Override
     public String toString() {
-        return "Solution{" +
-                "name='" + name + '\'' +
-                ", successProb=" + successProb +
-                '}';
+        return  name+"-" + successProb;
     }
 }
 

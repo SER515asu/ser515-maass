@@ -15,15 +15,6 @@ public class BlockerManager {
         }
         return blockerManager;
     }
-    private static BlockerManager blockerManager;
-    private ArrayList<String> blockers;
-
-    public static BlockerManager getInstance() {
-        if (blockerManager == null) {
-            blockerManager = new BlockerManager();
-        }
-        return blockerManager;
-    }
 
     public BlockerManager() {
         blockers = new ArrayList<>();
