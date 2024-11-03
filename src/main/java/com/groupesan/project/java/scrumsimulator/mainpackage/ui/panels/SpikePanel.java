@@ -9,66 +9,72 @@ import java.awt.event.ActionListener;
 
 public class SpikePanel extends JPanel {
 
-	private DefaultTableModel spikeTableModel;
+    private DefaultTableModel spikeTableModel;
 
-	public SpikePanel() {
-		init();
-	}
+    public SpikePanel() {
+        init();
+    }
 
-	private void init() {
-		setLayout(new BorderLayout());
-		String[] columns = { "S.No", "Spike Title", "Reason/Desc", "Resolved" };
+    private void init() {
+        setLayout(new BorderLayout());
+        String[] columns = { "S.No", "Spike Title", "Reason/Desc", "Resolved" };
 
-		spikeTableModel = new DefaultTableModel(columns, 0) {
-			@Override
-			public Class<?> getColumnClass(int column) {
-				if (column == 3) {
-					return Boolean.class;
-				} else {
-					return String.class;
-				}
-			}
-		};
+        spikeTableModel = new DefaultTableModel(columns, 0) {
+            @Override
+            public Class<?> getColumnClass(int column) {
+                if (column == 3) {
+                    return Boolean.class;
+                } else {
+                    return String.class;
+                }
+            }
+        };
 
-		JTable spikeTable = new JTable(spikeTableModel);
-		spikeTable.getColumnModel().getColumn(3).setCellEditor(new DefaultCellEditor(new JCheckBox()));
-		spikeTable.getColumnModel().getColumn(3).setCellRenderer(new TableCellRenderer() {
-			@Override
-			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
-					boolean hasFocus, int row, int column) {
-				JCheckBox checkBox = new JCheckBox();
-				checkBox.setSelected(value != null && (Boolean) value);
-				return checkBox;
-			}
-		});
+        JTable spikeTable = new JTable(spikeTableModel);
+        spikeTable.getColumnModel().getColumn(3).setCellEditor(new DefaultCellEditor(new JCheckBox()));
+        spikeTable.getColumnModel().getColumn(3).setCellRenderer(new TableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                                                           boolean hasFocus, int row, int column) {
+                JCheckBox checkBox = new JCheckBox();
+                checkBox.setSelected(value != null && (Boolean) value);
+                return checkBox;
+            }
+        });
 
-		spikeTable.getModel().addTableModelListener(e -> {
-			int row = e.getFirstRow();
-			int col = e.getColumn();
-			if (col == 3 && (Boolean) spikeTableModel.getValueAt(row, col)) {
-				spikeTableModel.removeRow(row);
-			}
-		});
+        spikeTable.getModel().addTableModelListener(e -> {
+            int row = e.getFirstRow();
+            int col = e.getColumn();
+            if (col == 3 && (Boolean) spikeTableModel.getValueAt(row, col)) {
+                spikeTableModel.removeRow(row);
+            }
+        });
 
-		JScrollPane scrollPane = new JScrollPane(spikeTable);
+        JScrollPane scrollPane = new JScrollPane(spikeTable);
 
-		JButton addNewSpikeButton = new JButton("Add Spike");
-		addNewSpikeButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
+        JButton addNewSpikeButton = new JButton("Add Spike");
+        addNewSpikeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                NewSpikeForm newSpikeForm = new NewSpikeForm(SpikePanel.this);
+                newSpikeForm.setVisible(true);
+            }
+        });
 
-			}
-		});
+        add(scrollPane, BorderLayout.CENTER);
+        add(addNewSpikeButton, BorderLayout.SOUTH);
+    }
 
-		add(scrollPane, BorderLayout.CENTER);
-		add(addNewSpikeButton, BorderLayout.SOUTH);
-	}
+    public void addSpike(String title, String description) {
+        int rowCount = spikeTableModel.getRowCount();
+        spikeTableModel.addRow(new Object[]{rowCount + 1, title, description, false});
+    }
 
-	public void showSpikeLogFrame() {
-		JFrame spikeLogFrame = new JFrame("Spike Activity Log");
-		spikeLogFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		spikeLogFrame.setSize(600, 400);
-		spikeLogFrame.add(this);
-		spikeLogFrame.setVisible(true);
-	}
+    public void showSpikeLogFrame() {
+        JFrame spikeLogFrame = new JFrame("Spike Activity Log");
+        spikeLogFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        spikeLogFrame.setSize(600, 400);
+        spikeLogFrame.add(this);
+        spikeLogFrame.setVisible(true);
+    }
 }
